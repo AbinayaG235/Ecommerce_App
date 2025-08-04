@@ -9,6 +9,8 @@ import AuthNavigator from './AuthNavigator';
 import BottomTabNavigator from './BottomTabNavigator';
 import { ASYNC_STORAGE_KEYS } from '../redux/types';
 
+
+
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {

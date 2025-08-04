@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Alert, TouchableOpacity, FlatList, Image } from 'react-native'; // Import Image
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TextInput, Alert, TouchableOpacity, FlatList, Image, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../redux/store';
 import { RootState } from '../redux/reducers';
-import { setActiveCategory } from '../redux/actions/productActions';
-
+import { setActiveCategory, fetchProductsRequest } from '../redux/actions/productActions';
 import { useNavigation } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { BottomTabParamList } from '../redux/types'; 
+import { BottomTabParamList } from '../redux/types';
 import { Product } from '../redux/types';
 
 
@@ -17,11 +16,18 @@ type SearchScreenNavigationProp = BottomTabNavigationProp<BottomTabParamList, 'S
 const SearchScreen = () => {
   const [searchText, setSearchText] = useState('');
   const dispatch = useDispatch<AppDispatch>();
-  const navigation = useNavigation<SearchScreenNavigationProp>(); 
+  const navigation = useNavigation<SearchScreenNavigationProp>();
 
-  const { products, categories, activeCategory } = useSelector(
+  const { products, categories, activeCategory, loading, error } = useSelector(
     (state: RootState) => state.products
   );
+
+  // FIX: Ensure products are fetched if they are not already in the store
+  useEffect(() => {
+      if (products.length === 0 && !loading) {
+          dispatch(fetchProductsRequest());
+      }
+  }, [products, loading, dispatch]);
 
   const handleSearch = () => {
     const normalizedSearchText = searchText.toLowerCase().trim();
@@ -29,7 +35,6 @@ const SearchScreen = () => {
 
     if (foundCategory) {
       dispatch(setActiveCategory(foundCategory));
-
     } else {
       Alert.alert('Category Not Found', `No category matching "${searchText}" was found. Please try a different category name (e.g., electronics, jewelry).`);
       dispatch(setActiveCategory(null));
@@ -53,6 +58,15 @@ const SearchScreen = () => {
   const currentFilteredProducts = activeCategory
     ? products.filter(product => product.category === activeCategory)
     : []; 
+
+  if (loading && products.length === 0) {
+    return (
+      <View style={styles.centered}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text>Loading products...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -98,7 +112,12 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#f8f8f8',
   },
-  searchBarContainer: { 
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  searchBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
@@ -106,7 +125,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flex: 1,
-    height: 50, 
+    height: 50,
     borderColor: '#ddd',
     borderWidth: 1,
     borderRadius: 8,
@@ -114,24 +133,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
     backgroundColor: '#fff',
-    marginRight: 10, 
+    marginRight: 10,
   },
   searchButton: {
     backgroundColor: '#007bff',
-    height: 40, 
-    width: 50, 
-    borderRadius: 8, 
+    height: 50,
+    width: 50,
+    borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  searchIcon: {
-    height:8,
-    width: 60,
-    marginBottom:10,
-    
-  },
   resultsContainer: {
-    marginTop: 10, 
+    marginTop: 10,
     width: '100%',
     flex: 1,
   },
@@ -148,7 +161,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   productItem: {
-    flexDirection: 'row', 
+    flexDirection: 'row',
     backgroundColor: '#fff',
     padding: 15,
     borderRadius: 8,
@@ -158,14 +171,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 2,
     elevation: 1,
-    alignItems: 'center', 
+    alignItems: 'center',
   },
-  productImage: { 
+  productImage: {
     width: 60,
     height: 60,
     borderRadius: 5,
     marginRight: 10,
-    backgroundColor: '#eee', 
+    backgroundColor: '#eee',
   },
   productDetails: {
     flex: 1,

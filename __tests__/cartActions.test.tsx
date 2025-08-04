@@ -11,7 +11,7 @@ import { addToCart, removeFromCart, updateCartItemQuantity } from '../src/redux/
 describe('Cart Actions', () => {
   const mockProduct: Product = {id: 1, title: 'Test Product', price: 100, description: '', category: '', image: '', rating: { rate: 0, count: 0 }};
 
-  test('addToCart should create an ADD_TO_CART action with a product', () => {
+  test('should create an ADD_TO_CART action with a product', () => {
     expect(addToCart(mockProduct)).toEqual({
       type: ADD_TO_CART,
       payload: mockProduct,
@@ -25,10 +25,11 @@ describe('Cart Actions', () => {
     });
   });
 
-  test('should create an UPDATE_CART_ITEM_QUANTITY action with productId and quantity', () => {
+  test('should create an action with productId and quantity', () => {
     expect(updateCartItemQuantity(1, 5)).toEqual({
       type: UPDATE_CART_ITEM_QUANTITY,
       payload: { productId: 1, quantity: 5 },
     });
   });
 });
+

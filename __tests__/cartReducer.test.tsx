@@ -21,7 +21,7 @@ describe('Cart Reducer', () => {
     });
   });
 
-  test('should handle ADD_TO_CART for existing item', () => {
+  test('adding existing item', () => {
     const stateWithItem: CartState = { items: [{ ...mockProduct1, quantity: 1 }] };
     const action = { type: ADD_TO_CART, payload: mockProduct1 };
     expect(cartReducer(stateWithItem, action)).toEqual({
@@ -39,13 +39,13 @@ describe('Cart Reducer', () => {
 
   test('should handle UPDATE_CART_ITEM_QUANTITY to increase', () => {
     const stateWithItem: CartState = { items: [{ ...mockProduct1, quantity: 1 }] };
-    const action = { type: UPDATE_CART_ITEM_QUANTITY, payload: { productId: mockProduct1.id, quantity: 1 } };
+    const action = { type: UPDATE_CART_ITEM_QUANTITY, payload: { productId: mockProduct1.id, quantity: 2 } };
     expect(cartReducer(stateWithItem, action)).toEqual({
-      items: [{ ...mockProduct1, quantity: 1 }],
+      items: [{ ...mockProduct1, quantity: 2 }],
     });
   });
 
-  test('should handle UPDATE_CART_ITEM_QUANTITY to decrease and not remove if > 0', () => {
+  test('decrease and not remove if > 0', () => {
     const stateWithItem: CartState = { items: [{ ...mockProduct1, quantity: 5 }] };
     const action = { type: UPDATE_CART_ITEM_QUANTITY, payload: { productId: mockProduct1.id, quantity: 2 } };
     expect(cartReducer(stateWithItem, action)).toEqual({
@@ -53,15 +53,16 @@ describe('Cart Reducer', () => {
     });
   });
 
-//   test('should handle UPDATE_CART_ITEM_QUANTITY to 0 or less by removing item', () => {
-//     const stateWithItem: CartState = { items: [{ ...mockProduct1, quantity: 1 }] };
-//     const action = { type: UPDATE_CART_ITEM_QUANTITY, payload: { productId: mockProduct1.id, quantity: 0 } };
-//     expect(cartReducer(stateWithItem, action)).toEqual({
-//       items: [],
-//     });
-//     const action2 = { type: UPDATE_CART_ITEM_QUANTITY, payload: { productId: mockProduct1.id, quantity: -1 } };
-//     expect(cartReducer(stateWithItem, action2)).toEqual({
-//       items: [],
-//     });
-//   });
+
+  test('should handle if quantity is 0 or less by removing item', () => {
+    const stateWithItem: CartState = { items: [{ ...mockProduct1, quantity: 1 }] };
+    const action = { type: UPDATE_CART_ITEM_QUANTITY, payload: { productId: mockProduct1.id, quantity: 0 } };
+    expect(cartReducer(stateWithItem, action)).toEqual({
+      items: [],
+    });
+    const action2 = { type: UPDATE_CART_ITEM_QUANTITY, payload: { productId: mockProduct1.id, quantity: -1 } };
+    expect(cartReducer(stateWithItem, action2)).toEqual({
+      items: [],
+    });
+  });
 });

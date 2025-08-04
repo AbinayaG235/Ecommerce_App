@@ -43,8 +43,8 @@ case REMOVE_FROM_CART:
               ? { ...item, quantity : action.payload.quantity  }
               : item
           )
-          .filter((item)=> item.quantity),
-          //.filter((item) => item.quantity > 0),
+          //.filter((item)=> item.quantity),
+          .filter((item) => item.quantity > 0),
       };
 
   default:

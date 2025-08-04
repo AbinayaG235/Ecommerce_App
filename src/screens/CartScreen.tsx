@@ -14,7 +14,6 @@ const CartScreen = () => {
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const handleUpdateQuantity = (productId: number, newQuantity: number) => {
-    // FIX: The condition should be `newQuantity < 1` or similar, not `newQuantity = 1`
     if (newQuantity < 1) {
       Alert.alert(
         'Remove Item?',
@@ -49,8 +48,8 @@ const CartScreen = () => {
         <View style={styles.quantityContainer}>
           <TouchableOpacity
             style={styles.quantityButton}
-            onPress={() => handleUpdateQuantity(item.id, item.quantity - 1)} // FIX: newQuantity should be quantity - 1
-          >
+            onPress={() => handleUpdateQuantity(item.id, item.quantity - 1)} 
+            testID=''          >
             <Text style={styles.quantityButtonText}>-</Text>
           </TouchableOpacity>
           <Text style={styles.quantityText}>{item.quantity}</Text>
@@ -65,8 +64,9 @@ const CartScreen = () => {
       <TouchableOpacity
         style={styles.removeButton}
         onPress={() => handleRemoveItem(item.id)}
+        testID="remove-item-1"
       >
-        <Icon name="trash" size={20} color="#fff" />
+        <Icon name="trash" size={20} color="#fff"/>
       </TouchableOpacity>
     </View>
   );

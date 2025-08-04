@@ -18,11 +18,11 @@ let store;
 
 
 const mockCartItem1: CartItem = {
-  id: 1, title: 'Item A', price: 10.50, quantity: 2,
+  id: 1, title: 'Item 1', price: 10.50, quantity: 2,
   description: '', category: '', image: 'urlA', rating: {rate:4, count:100}
 };
 const mockCartItem2: CartItem = {
-  id: 2, title: 'Item B', price: 5.00, quantity: 1,
+  id: 2, title: 'Item 2', price: 5.00, quantity: 1,
   description: '', category: '', image: 'urlB', rating: {rate:3, count:50}
 };
 
@@ -50,18 +50,18 @@ describe('CartScreen', () => {
   });
 
   test('renders cart items and correct total price', () => {
-    const filledState: AppState = {
+    const filled: AppState = {
       cart: { items: [mockCartItem1, mockCartItem2] },
       products: {} as any
     };
-    store = mockStore(filledState);
+    store = mockStore(filled);
     render(
       <Provider store={store}>
         <CartScreen />
       </Provider>
     );
-    expect(screen.getByText('Item A')).toBeTruthy();
-    expect(screen.getByText('Item B')).toBeTruthy();
+    expect(screen.getByText('Item 1')).toBeTruthy();
+    expect(screen.getByText('Item 2')).toBeTruthy();
 
     expect(screen.getByText('Total: $26.00')).toBeTruthy();
   });
@@ -113,7 +113,7 @@ describe('CartScreen', () => {
   test('after user confirms removal from alert remove item', async () => {
     const filledState: AppState = {
       cart: { items: [mockCartItem1] },
-      products: {} as any
+      products: {} as any,
     };
     store = mockStore(filledState);
     render(
@@ -122,9 +122,21 @@ describe('CartScreen', () => {
       </Provider>
     );
 
+    // if(mockCartItem1.quantity<2){
+    //       const removeButton = screen.getByTestId('remove-item-1'); 
+    //       fireEvent.press(removeButton);
+    //        expect(Alert.alert).toHaveBeenCalledWith(
+    //   'Remove Item?',
+    //   'Are you sure you want to remove this item from your cart?',
+    //   expect.arrayContaining([
+    //     expect.objectContaining({ text: 'Yes, Remove', onPress: expect.any(Function) }),
+    //   ])
+    // );
+    // }
+
     const removeButton = screen.getByTestId('remove-item-1'); 
-    const trashIcon = screen.getByText('trash'); 
-    fireEvent.press(trashIcon);
+    //const trashIcon = screen.getByText('trash'); 
+    fireEvent.press(removeButton);
 
     expect(Alert.alert).toHaveBeenCalledWith(
       'Remove Item?',

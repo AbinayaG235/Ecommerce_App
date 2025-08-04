@@ -26,7 +26,6 @@ jest.mock('@react-navigation/native', () => {
 });
 
 jest.mock('../src/api/product', () => ({
-  __esModule: true,
   getProductById: jest.fn(),
 }));
 
@@ -54,7 +53,8 @@ describe('ProductDetailScreen', () => {
     store = mockStore(initialState);
     (productApi.getProductById as jest.Mock).mockResolvedValue(mockProduct);
     jest.spyOn(cartActions, 'addToCart');
-  });
+  }
+);
 
   test('renders loading state initially', () => {
     (productApi.getProductById as jest.Mock).mockReturnValue(new Promise(() => {}));

@@ -4,31 +4,26 @@ import { useNavigation, CommonActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { User, ASYNC_STORAGE_KEYS, } from '../redux/types';
+import { User, ASYNC_STORAGE_KEYS, RootStackParamList } from '../redux/types';
 
-
-export type RootStackParamList = {
-  Onboarding: undefined;
-  Auth: undefined;
-  MainApp: undefined;
-};
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Auth'>; //removed ,'Auth'
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Auth'>;
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation<LoginScreenNavigationProp>();
 
-  let storedUsersJson:(string| null)= ''
   const handleLogin = async () => {
+    
     if (!email || !password) {
       Alert.alert('Login Failed', 'Please enter email and password.');
       return;
     }
 
     try {
-      storedUsersJson = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.USERS);
+      const storedUsersJson = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.USERS);
       let registeredUsers: User[] = [];
+      
       if (storedUsersJson) {
         registeredUsers = JSON.parse(storedUsersJson);
       }
@@ -36,49 +31,21 @@ const LoginScreen = () => {
         u => u.email === email && u.password === password
       );
 
+      
       if (user) {
         await AsyncStorage.setItem(ASYNC_STORAGE_KEYS.USER_TOKEN, 'dummy_Tokken');
         Alert.alert('Login Success', `Welcome back, ${user.email}!`);
-
-        // navigation.dispatch(
-        //   CommonActions.reset({
-        //     index: 0,
-        //     routes: [{ name: 'MainApp' }],
-        //   })
-        // );
-        navigation.navigate('MainApp')
-
+        navigation.replace('MainApp');
       } else {
+        
         Alert.alert('Login Failed', 'Invalid email or password.');
       }
     } catch (e) {
+      
       console.error('Login Error:', e);
       Alert.alert('Login Error', 'Something went wrong during login. Please try again.');
     }
-
   };
-
-      const handleForgetPass = (email : string)=>{
-      //  const storedUsersJson = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.USERS);
-      let registeredUsers: User[] = [];
-      if (storedUsersJson) {
-        registeredUsers = JSON.parse(storedUsersJson);
-      }
-      const user = registeredUsers.find(
-        u => {(u.email === email)
-    });
-    if(!user){
-      Alert.alert("not found")
-      return;
-    }
-
-    else{
-      Alert.alert("Yess!!!");
-      return;
-    }
-  
-     
-    }
 
   return (
     <View style={styles.container}>
@@ -109,8 +76,7 @@ const LoginScreen = () => {
           onChangeText={setPassword}
           testID="passwordInput"
         />
-        {/* <TouchableOpacity onPress={() => Alert.alert('Forgot Password', 'Feature not implemented.')}> */}
-        <TouchableOpacity onPress={ ()=>handleForgetPass("abi")}>
+        <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')} testID="forgotPasswordLink">
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
@@ -118,10 +84,8 @@ const LoginScreen = () => {
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin} testID='loginButton'>
         <Text style={styles.loginButtonText}>Login</Text>
       </TouchableOpacity>
-
-     
-
-      <TouchableOpacity onPress={() => navigation.replace('Register')} testID="registerLink"> 
+      
+      <TouchableOpacity onPress={() => navigation.replace('Register')} testID="registerLink">
         <Text style={styles.signupText}>
           Create An Account <Text style={styles.signupLink}>Sign Up</Text>
         </Text>
