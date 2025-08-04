@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { User, ASYNC_STORAGE_KEYS } from '../redux/types';
+// import { Button } from 'react-native/types_generated/index';
 
 const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState('');

@@ -54,7 +54,6 @@ const initialAuthState = { userToken: null, isLoggedIn: false, hasSeenOnboarding
 const initialState: AppState = {
   products: initialProductState,
   cart: initialCartState,
-  //auth: initialAuthState,
 };
 
 describe('HomeScreen', () => {
@@ -66,7 +65,7 @@ describe('HomeScreen', () => {
   });
 
   
-  describe('renders loading state initially and dispatches both fetch requests', () => {
+  describe('renders loading state initially and dispatches fetch requests', () => {
     store = mockStore({ ...initialState, products: { ...initialState.products, loading: true } });
     render(
       <Provider store={store}>

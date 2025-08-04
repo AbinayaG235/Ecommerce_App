@@ -41,7 +41,7 @@ const OnboardingScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const flatListRef = useRef<FlatList<Slide>>(0);
+  const flatListRef = useRef<FlatList<Slide>>([]);
 
   const handleGetStarted = async () => {
     try {

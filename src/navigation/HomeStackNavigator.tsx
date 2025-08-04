@@ -43,6 +43,7 @@ const HomeStackNavigator = () => {
         component={HomeScreen}
         options={{
           title: 'Click & Collect',
+
           headerRight: () => (
             <View style={styles.headerRightContainer}>
               {/* <TouchableOpacity
@@ -76,22 +77,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginRight: 15,
   },
-  cartBadge: {
-    position: 'absolute',
-    right: -6,
-    top: -3, 
-    backgroundColor: 'red',
-    borderRadius: 9,
-    width: 18,
-    height: 18,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  cartBadgeText: {
-    color: 'white',
-    fontSize: 10,
-    fontWeight: 'bold',
-  },
+  // cartBadge: {
+  //   position: 'absolute',
+  //   right: -6,
+  //   top: -3, 
+  //   backgroundColor: 'red',
+  //   borderRadius: 9,
+  //   width: 18,
+  //   height: 18,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
+  // cartBadgeText: {
+  //   color: 'white',
+  //   fontSize: 10,
+  //   fontWeight: 'bold',
+  // },
 });
 
 export default HomeStackNavigator;

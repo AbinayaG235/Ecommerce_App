@@ -41,7 +41,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     dispatch(fetchProductsRequest());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     if (products.length > 0) {
@@ -73,7 +73,7 @@ const HomeScreen = () => {
       : products; 
 
     console.log(`--- Category Selected: ${category || 'All Products'} ---`);
-    console.log(`Number of products in this view: ${productsToLog.length}`);
+    console.log(`No. of products : ${productsToLog.length}`);
     console.log('----------------------------------------------------');
   };
 
@@ -225,8 +225,9 @@ const styles = StyleSheet.create({
   },
   categoryCircleContainer: {
     alignItems: 'center',
-    marginHorizontal: 8,
+    marginHorizontal: 3,
     width: 80,
+    //marginTop: -1
   },
   categoryCircle: {
     width: 60,
