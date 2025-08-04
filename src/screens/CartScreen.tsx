@@ -64,7 +64,7 @@ const CartScreen = () => {
       <TouchableOpacity
         style={styles.removeButton}
         onPress={() => handleRemoveItem(item.id)}
-        testID="remove-item-1"
+        testID="remove-item"
       >
         <Icon name="trash" size={20} color="#fff"/>
       </TouchableOpacity>

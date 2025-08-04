@@ -8,6 +8,7 @@ import { ASYNC_STORAGE_KEYS, RootStackParamList } from '../redux/types';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../redux/store';
 import { logout } from '../redux/actions/authActions';
+import { Button } from 'react-native/types_generated/index';
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'MainApp'>;
 
@@ -129,7 +130,7 @@ const ProfileScreen = () => {
           onChangeText={setCountry}
         />
       </View>
-
+          <Button>Logout</Button>
       <TouchableOpacity style={styles.saveButton} onPress={handleSaveDetails}>
         <Text style={styles.saveButtonText}>Save Details</Text>
       </TouchableOpacity>

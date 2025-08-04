@@ -122,20 +122,8 @@ describe('CartScreen', () => {
       </Provider>
     );
 
-    // if(mockCartItem1.quantity<2){
-    //       const removeButton = screen.getByTestId('remove-item-1'); 
-    //       fireEvent.press(removeButton);
-    //        expect(Alert.alert).toHaveBeenCalledWith(
-    //   'Remove Item?',
-    //   'Are you sure you want to remove this item from your cart?',
-    //   expect.arrayContaining([
-    //     expect.objectContaining({ text: 'Yes, Remove', onPress: expect.any(Function) }),
-    //   ])
-    // );
-    // }
 
-    const removeButton = screen.getByTestId('remove-item-1'); 
-    //const trashIcon = screen.getByText('trash'); 
+    const removeButton = screen.getByTestId('remove-item'); 
     fireEvent.press(removeButton);
 
     expect(Alert.alert).toHaveBeenCalledWith(

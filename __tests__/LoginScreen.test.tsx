@@ -61,19 +61,19 @@ describe('LoginScreen', () => {
   test('handles successful login and navigates to MainApp', async () => {
     (AsyncStorage.getItem as jest.Mock).mockImplementation((key) => {
       if (key === ASYNC_STORAGE_KEYS.USERS) {
-        return Promise.resolve(JSON.stringify([{ email: 'test@example.com', password: '12345' }]));
+        return Promise.resolve(JSON.stringify([{ email: 'abi', password: '12345' }]));
       }
       return Promise.resolve(null);
     });
 
     render(<LoginScreen />);
 
-    fireEvent.changeText(screen.getByTestId('emailInput'), 'test@example.com');
+    fireEvent.changeText(screen.getByTestId('emailInput'), 'abi');
     fireEvent.changeText(screen.getByTestId('passwordInput'), '12345');
     fireEvent.press(screen.getByTestId('loginButton'));
 
     await waitFor(() => {
-      expect(Alert.alert).toHaveBeenCalledWith('Login Success', 'Welcome back, test@example.com!');
+      expect(Alert.alert).toHaveBeenCalledWith('Login Success', 'Welcome back, abi!');
     });
 
     expect(AsyncStorage.setItem).toHaveBeenCalledWith(ASYNC_STORAGE_KEYS.USER_TOKEN, 'dummy_Tokken');

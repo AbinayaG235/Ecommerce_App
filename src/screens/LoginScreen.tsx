@@ -27,6 +27,7 @@ const LoginScreen = () => {
       if (storedUsersJson) {
         registeredUsers = JSON.parse(storedUsersJson);
       }
+      
       const user = registeredUsers.find(
         u => u.email === email && u.password === password
       );

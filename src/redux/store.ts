@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, Dispatch } from 'redux'; // Import Dispatch
+import { createStore, applyMiddleware, Dispatch } from 'redux';
 import rootReducer from './reducers';
 //import createSagaMiddleware from 'redux-saga';
 const createSagaMiddleware = require('redux-saga').default;

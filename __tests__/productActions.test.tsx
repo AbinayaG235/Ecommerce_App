@@ -28,7 +28,7 @@ describe('Product Actions', () => {
     });
   });
 
-  test('fetchProductsSuccess should create a FETCH_PRODUCTS_SUCCESS action with products payload', () => {
+  test('create a FETCH_PRODUCTS_SUCCESS action with products payload', () => {
     const mockProducts: Product[] = [
       { id: 1, title: 'Product 1', price: 10, description: '', category: 'electronics', image: '', rating: { rate: 4, count: 100 } },
       { id: 2, title: 'Product 2', price: 20, description: '', category: 'jewelry', image: '', rating: { rate: 3, count: 50 } },
@@ -39,7 +39,7 @@ describe('Product Actions', () => {
     });
   });
 
-  test('fetchProductsFailure should create a FETCH_PRODUCTS_FAILURE action with an error message payload', () => {
+  test('create a FETCH_PRODUCTS_FAILURE action with an error message ', () => {
     const errorMessage = 'Failed to load products from API.';
     expect(fetchProductsFailure(errorMessage)).toEqual({
       type: FETCH_PRODUCTS_FAILURE,
@@ -47,22 +47,21 @@ describe('Product Actions', () => {
     });
   });
 
-  test('fetchCategoriesRequest should create a FETCH_CATEGORIES_REQUEST action', () => {
+  test('create a FETCH_CATEGORIES_REQUEST action', () => {
     expect(fetchCategoriesRequest()).toEqual({
       type: FETCH_CATEGORIES_REQUEST,
     });
   });
 
-  test('fetchCategoriesSuccess should create a FETCH_CATEGORIES_SUCCESS action with categories payload', () => {
+  test('FETCH_CATEGORIES_SUCCESS action with categories payload need to be created', () => {
     const mockCategories: string[] = ['electronics', 'jewelry', 'men\'s clothing'];
     expect(fetchCategoriesSuccess(mockCategories)).toEqual({
       type: FETCH_CATEGORIES_SUCCESS,
       payload: mockCategories,
     });
   });
-
-  // Test for fetchCategoriesFailure
-  test('fetchCategoriesFailure should create a FETCH_CATEGORIES_FAILURE action with an error message payload', () => {
+  
+  test('create a FETCH_CATEGORIES_FAILURE action with an error message payload', () => {
     const errorMessage = 'Failed to load categories.';
     expect(fetchCategoriesFailure(errorMessage)).toEqual({
       type: FETCH_CATEGORIES_FAILURE,
@@ -70,7 +69,7 @@ describe('Product Actions', () => {
     });
   });
 
-  // Test for setActiveCategory
+  
   test('setActiveCategory should create a SET_ACTIVE_CATEGORY action with a category name', () => {
     const categoryName = 'electronics';
     expect(setActiveCategory(categoryName)).toEqual({

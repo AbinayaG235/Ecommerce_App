@@ -22,7 +22,6 @@ const SearchScreen = () => {
     (state: RootState) => state.products
   );
 
-  // FIX: Ensure products are fetched if they are not already in the store
   useEffect(() => {
       if (products.length === 0 && !loading) {
           dispatch(fetchProductsRequest());
