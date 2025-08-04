@@ -139,8 +139,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   resultsContainer: {
     marginTop: 10,

@@ -139,7 +139,6 @@ const RegisterScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f8f8f8',
     padding: 20,
@@ -176,7 +175,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#007bff',
     paddingVertical: 15,
     borderRadius: 10,
-    alignItems: 'center',
     marginTop: 20,
     width: '100%',
     shadowColor: '#000',

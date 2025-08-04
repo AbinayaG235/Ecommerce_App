@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
   slide: {
     width: width,
     flex: 2,
-    justifyContent: 'space-between',
     alignItems: 'center',
   },
   slideTopSection: {
@@ -170,7 +169,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   controlsContainer: {
-    position: 'absolute',
+    position: 'relative',
     bottom: 30,
     width: '100%',
     alignItems: 'center',
@@ -196,9 +195,8 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 30,
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
     elevation: 10,
     width: '80%',
     maxWidth: 300,

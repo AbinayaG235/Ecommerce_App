@@ -44,6 +44,8 @@ const HomeScreen = () => {
   }, []);
 
   useEffect(() => {
+    const a = null;
+    const b = a.length;
     if (products.length > 0) {
       const allCategory = new Set<string>();
       const prodByCat = new Map<string, Product[]>();

@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   inputContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: '#fff',
     borderRadius: 10,
@@ -135,7 +135,6 @@ const styles = StyleSheet.create({
     color: '#746b6aff',
     fontSize: 14,
     fontWeight: 'bold',
-    position: 'absolute',
     right: 0,
     top: -15,
   },
