@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#28a745',
     paddingVertical: 15,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   addToCartButtonText: {
     color: '#fff',

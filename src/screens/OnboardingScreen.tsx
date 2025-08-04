@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
   slide: {
     width: width,
     flex: 2,
-    justifyContent: 'space-between',
     alignItems: 'center',
   },
   slideTopSection: {

@@ -80,7 +80,7 @@ const ProfileScreen = () => {
         <TextInput
           style={styles.input}
           value={email}
-          keyboardType="email-address"
+          keyboardType="numeric"
           editable={true} 
           onChangeText={setEmail} 
         />
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   avatarContainer: {
-    position: 'relative',
+    position: 'absolute',
     marginBottom: 10,
   },
   avatarImage: {
