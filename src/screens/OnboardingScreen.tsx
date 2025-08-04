@@ -169,8 +169,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   controlsContainer: {
-    position: 'relative',
-    bottom: 30,
+    position: 'absolute',
+    bottom: 40,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',

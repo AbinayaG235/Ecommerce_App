@@ -142,6 +142,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   addToCartButtonText: {
+    alignSelf:"center",
+    
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',

@@ -184,9 +184,11 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   registerButtonText: {
+    textAlign:"center",
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+    
   },
   loginText: {
     color: '#666',

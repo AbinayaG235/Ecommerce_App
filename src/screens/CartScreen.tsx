@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
   },
   centered: {
     flex: 1,
+    justifyContent:"center",
     alignItems: 'center',
   },
   emptyCartText: {
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
   },
   continueShoppingButtonText: {
     color: '#fff',
-    fontSize: 1,
+    fontSize: 14,
     fontWeight: 'bold',
   },
   listContent: {

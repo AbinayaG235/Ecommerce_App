@@ -68,6 +68,7 @@ const LoginScreen = () => {
 
       <View style={styles.inputContainer}>
         <Icon name="lock" size={20} color="#666" style={styles.inputIcon} />
+        {/* <TextInput>hd</TextInput> */}
         <TextInput
           style={styles.input}
           placeholder="Password"
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   inputContainer: {
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
     borderRadius: 10,
@@ -124,19 +125,17 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   inputIcon: {
-    marginRight: 10,
+    padding:5,
   },
   input: {
     flex: 1,
-    height: 50,
+    height: 40,
     color: '#333',
   },
   forgotPassword: {
     color: '#746b6aff',
     fontSize: 14,
     fontWeight: 'bold',
-    right: 0,
-    top: -15,
   },
   loginButton: {
     backgroundColor: '#3377ffff',
